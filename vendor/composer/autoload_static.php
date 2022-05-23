@@ -70,6 +70,7 @@ class ComposerStaticInit5917264527b586c1a1699355b5a20017
         ),
         'D' => 
         array (
+            'DogBreedsAPI\\' => 13,
             'Doctrine\\Inflector\\' => 19,
             'DI\\' => 3,
         ),
@@ -168,9 +169,9 @@ class ComposerStaticInit5917264527b586c1a1699355b5a20017
         ),
         'Illuminate\\Support\\' => 
         array (
-            0 => __DIR__ . '/..' . '/illuminate/macroable',
+            0 => __DIR__ . '/..' . '/illuminate/collections',
             1 => __DIR__ . '/..' . '/illuminate/conditionable',
-            2 => __DIR__ . '/..' . '/illuminate/collections',
+            2 => __DIR__ . '/..' . '/illuminate/macroable',
             3 => __DIR__ . '/..' . '/illuminate/support',
         ),
         'Illuminate\\Database\\' => 
@@ -192,6 +193,10 @@ class ComposerStaticInit5917264527b586c1a1699355b5a20017
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
+        ),
+        'DogBreedsAPI\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/api',
         ),
         'Doctrine\\Inflector\\' => 
         array (

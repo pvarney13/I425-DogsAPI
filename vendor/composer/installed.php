@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '518acb2809b5f93302e5056c3db3e54acab2d25b',
+        'reference' => 'e91270d23c04fe9c5546ef343ed0161634d975ff',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '518acb2809b5f93302e5056c3db3e54acab2d25b',
+            'reference' => 'e91270d23c04fe9c5546ef343ed0161634d975ff',
             'dev_requirement' => false,
         ),
         'doctrine/inflector' => array(
@@ -166,8 +166,8 @@
         'psr/container-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '^1.0',
-                1 => '1.1|2.0',
+                0 => '1.1|2.0',
+                1 => '^1.0',
             ),
         ),
         'psr/http-factory' => array(

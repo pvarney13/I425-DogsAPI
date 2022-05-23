@@ -271,7 +271,7 @@ trait HasAttributes
 
             // Here we will cast the attribute. Then, if the cast is a date or datetime cast
             // then we will serialize the date for the array. This will convert the dates
-            // to strings based on the date format specified for these Eloquent models.
+            // to strings based on the date format specified for these Eloquent Models.
             $attributes[$key] = $this->castAttribute(
                 $key, $attributes[$key]
             );
@@ -346,7 +346,7 @@ trait HasAttributes
 
         foreach ($this->getArrayableRelations() as $key => $value) {
             // If the values implement the Arrayable interface we can just call this
-            // toArray method on the instances which will convert both models and
+            // toArray method on the instances which will convert both Models and
             // collections to their proper array form and we'll set the values.
             if ($value instanceof Arrayable) {
                 $relation = $value->toArray();
@@ -354,7 +354,7 @@ trait HasAttributes
 
             // If the value is null, we'll still go ahead and set it in this list of
             // attributes, since null is used to represent empty relationships if
-            // it has a has one or belongs to type relationships on the models.
+            // it has a has one or belongs to type relationships on the Models.
             elseif (is_null($value)) {
                 $relation = $value;
             }

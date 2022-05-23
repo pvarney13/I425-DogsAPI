@@ -207,7 +207,7 @@ class BelongsToMany extends Relation
 
         // We need to join to the intermediate table on the related model's primary
         // key column with the intermediate table's foreign key for the related
-        // model instance. Then we can set the "where" for the parent models.
+        // model instance. Then we can set the "where" for the parent Models.
         $query->join(
             $this->table,
             $this->getQualifiedRelatedKeyName(),
@@ -249,7 +249,7 @@ class BelongsToMany extends Relation
     }
 
     /**
-     * Initialize the relation on a set of models.
+     * Initialize the relation on a set of Models.
      *
      * @param  array  $models
      * @param  string  $relation
@@ -278,7 +278,7 @@ class BelongsToMany extends Relation
 
         // Once we have an array dictionary of child objects we can easily match the
         // children back to their parent using the dictionary and the keys on the
-        // parent models. Then we should return these hydrated models back out.
+        // parent Models. Then we should return these hydrated Models back out.
         foreach ($models as $model) {
             $key = $this->getDictionaryKey($model->{$this->parentKey});
 
@@ -300,7 +300,7 @@ class BelongsToMany extends Relation
      */
     protected function buildDictionary(Collection $results)
     {
-        // First we'll build a dictionary of child models keyed by the foreign key
+        // First we'll build a dictionary of child Models keyed by the foreign key
         // of the relation so that we will easily and quickly match them to the
         // parents without having a possibly slow inner loop for every model.
         $dictionary = [];
@@ -315,7 +315,7 @@ class BelongsToMany extends Relation
     }
 
     /**
-     * Get the class being used for pivot models.
+     * Get the class being used for pivot Models.
      *
      * @return string
      */
@@ -674,7 +674,7 @@ class BelongsToMany extends Relation
     }
 
     /**
-     * Find multiple related models by their primary keys.
+     * Find multiple related Models by their primary keys.
      *
      * @param  \Illuminate\Contracts\Support\Arrayable|array  $ids
      * @param  array  $columns
@@ -838,7 +838,7 @@ class BelongsToMany extends Relation
     {
         // First we'll add the proper select columns onto the query so it is run with
         // the proper columns. Then, we will get the results and hydrate our pivot
-        // models with the result of those columns as a separate model relation.
+        // Models with the result of those columns as a separate model relation.
         $builder = $this->query->applyScopes();
 
         $columns = $builder->getQuery()->columns ? [] : $columns;
@@ -849,7 +849,7 @@ class BelongsToMany extends Relation
 
         $this->hydratePivotRelation($models);
 
-        // If we actually found models we will also eager load any relationships that
+        // If we actually found Models we will also eager load any relationships that
         // have been specified as needing to be eager loaded. This will solve the
         // n + 1 query problem for the developer and also increase performance.
         if (count($models) > 0) {
@@ -1067,7 +1067,7 @@ class BelongsToMany extends Relation
     }
 
     /**
-     * Hydrate the pivot table relationship on the models.
+     * Hydrate the pivot table relationship on the Models.
      *
      * @param  array  $models
      * @return void
@@ -1097,7 +1097,7 @@ class BelongsToMany extends Relation
         foreach ($model->getAttributes() as $key => $value) {
             // To get the pivots attributes we will just take any of the attributes which
             // begin with "pivot_" and add those to this arrays, as well as unsetting
-            // them from the parent's models since they exist in a different table.
+            // them from the parent's Models since they exist in a different table.
             if (str_starts_with($key, 'pivot_')) {
                 $values[substr($key, 6)] = $value;
 
@@ -1145,7 +1145,7 @@ class BelongsToMany extends Relation
     }
 
     /**
-     * Touch all of the related models for the relationship.
+     * Touch all of the related Models for the relationship.
      *
      * E.g.: Touch all roles associated with this user.
      *
@@ -1161,14 +1161,14 @@ class BelongsToMany extends Relation
 
         // If we actually have IDs for the relation, we will run the query to update all
         // the related model's timestamps, to make sure these all reflect the changes
-        // to the parent models. This will help us keep any caching synced up here.
+        // to the parent Models. This will help us keep any caching synced up here.
         if (count($ids = $this->allRelatedIds()) > 0) {
             $this->getRelated()->newQueryWithoutRelationships()->whereIn($key, $ids)->update($columns);
         }
     }
 
     /**
-     * Get all of the IDs for the related models.
+     * Get all of the IDs for the related Models.
      *
      * @return \Illuminate\Support\Collection
      */
@@ -1210,7 +1210,7 @@ class BelongsToMany extends Relation
     }
 
     /**
-     * Save an array of new models and attach them to the parent model.
+     * Save an array of new Models and attach them to the parent model.
      *
      * @param  \Illuminate\Support\Collection|array  $models
      * @param  array  $pivotAttributes
@@ -1250,7 +1250,7 @@ class BelongsToMany extends Relation
     }
 
     /**
-     * Create an array of new instances of the related models.
+     * Create an array of new instances of the related Models.
      *
      * @param  iterable  $records
      * @param  array  $joinings

@@ -20,9 +20,9 @@ class PruneCommand extends Command
      * @var string
      */
     protected $signature = 'model:prune
-                                {--model=* : Class names of the models to be pruned}
-                                {--except=* : Class names of the models to be excluded from pruning}
-                                {--chunk=1000 : The number of models to retrieve per chunk of models to be deleted}
+                                {--model=* : Class names of the Models to be pruned}
+                                {--except=* : Class names of the Models to be excluded from pruning}
+                                {--chunk=1000 : The number of Models to retrieve per chunk of Models to be deleted}
                                 {--pretend : Display the number of prunable records found instead of deleting them}';
 
     /**
@@ -30,7 +30,7 @@ class PruneCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Prune models that are no longer needed';
+    protected $description = 'Prune Models that are no longer needed';
 
     /**
      * Execute the console command.
@@ -43,7 +43,7 @@ class PruneCommand extends Command
         $models = $this->models();
 
         if ($models->isEmpty()) {
-            $this->info('No prunable models found.');
+            $this->info('No prunable Models found.');
 
             return;
         }
@@ -80,7 +80,7 @@ class PruneCommand extends Command
     }
 
     /**
-     * Determine the models that should be pruned.
+     * Determine the Models that should be pruned.
      *
      * @return \Illuminate\Support\Collection
      */
@@ -95,7 +95,7 @@ class PruneCommand extends Command
         $except = $this->option('except');
 
         if (! empty($models) && ! empty($except)) {
-            throw new InvalidArgumentException('The --models and --except options cannot be combined.');
+            throw new InvalidArgumentException('The --Models and --except options cannot be combined.');
         }
 
         return collect((new Finder)->in($this->getDefaultPath())->files()->name('*.php'))
@@ -119,7 +119,7 @@ class PruneCommand extends Command
     }
 
     /**
-     * Get the default path where models are located.
+     * Get the default path where Models are located.
      *
      * @return string
      */
@@ -142,7 +142,7 @@ class PruneCommand extends Command
     }
 
     /**
-     * Display how many models will be pruned.
+     * Display how many Models will be pruned.
      *
      * @param  string  $model
      * @return void
