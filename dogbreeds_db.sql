@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2022 at 05:23 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.9
+-- Generation Time: May 24, 2022 at 03:15 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -65,6 +65,7 @@ INSERT INTO `breeds` (`breedID`, `name`, `sizeID`, `temperamentID`, `categoryID`
 --
 
 CREATE TABLE `breed_color` (
+  `breed_color_id` int(11) NOT NULL,
   `breedID` int(11) NOT NULL,
   `colorID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -73,66 +74,66 @@ CREATE TABLE `breed_color` (
 -- Dumping data for table `breed_color`
 --
 
-INSERT INTO `breed_color` (`breedID`, `colorID`) VALUES
-(1, 5),
-(2, 9),
-(3, 1),
-(3, 2),
-(3, 4),
-(4, 1),
-(4, 2),
-(4, 4),
-(4, 9),
-(5, 1),
-(5, 2),
-(5, 3),
-(5, 7),
-(6, 1),
-(6, 4),
-(6, 7),
-(7, 1),
-(7, 2),
-(7, 7),
-(7, 8),
-(7, 9),
-(8, 1),
-(8, 2),
-(8, 3),
-(8, 4),
-(8, 7),
-(8, 8),
-(8, 9),
-(8, 19),
-(8, 20),
-(9, 1),
-(9, 3),
-(9, 4),
-(10, 1),
-(10, 2),
-(10, 3),
-(10, 8),
-(10, 21),
-(11, 1),
-(11, 2),
-(11, 3),
-(12, 1),
-(12, 2),
-(12, 4),
-(13, 1),
-(13, 2),
-(13, 3),
-(13, 7),
-(14, 1),
-(14, 2),
-(14, 3),
-(15, 2),
-(15, 3),
-(15, 7),
-(15, 8),
-(16, 1),
-(16, 2),
-(16, 5),
-(16, 8);
+INSERT INTO `breed_color` (`breed_color_id`, `breedID`, `colorID`) VALUES
+(1, 1, 5),
+(2, 2, 9),
+(3, 3, 1),
+(4, 3, 2),
+(5, 3, 4),
+(6, 4, 1),
+(7, 4, 2),
+(8, 4, 4),
+(9, 4, 9),
+(10, 5, 1),
+(11, 5, 2),
+(12, 5, 3),
+(13, 5, 7),
+(14, 6, 1),
+(15, 6, 4),
+(16, 6, 7),
+(17, 7, 1),
+(18, 7, 2),
+(19, 7, 7),
+(20, 7, 8),
+(21, 7, 9),
+(22, 8, 1),
+(23, 8, 2),
+(24, 8, 3),
+(25, 8, 4),
+(26, 8, 7),
+(27, 8, 8),
+(28, 8, 9),
+(29, 8, 19),
+(30, 8, 20),
+(31, 9, 1),
+(32, 9, 3),
+(33, 9, 4),
+(34, 10, 1),
+(35, 10, 2),
+(36, 10, 3),
+(37, 10, 8),
+(38, 10, 21),
+(39, 11, 1),
+(40, 11, 2),
+(41, 11, 3),
+(42, 12, 1),
+(43, 12, 2),
+(44, 12, 4),
+(45, 13, 1),
+(46, 13, 2),
+(47, 13, 3),
+(48, 13, 7),
+(49, 14, 1),
+(50, 14, 2),
+(51, 14, 3),
+(52, 15, 2),
+(53, 15, 3),
+(54, 15, 7),
+(55, 15, 8),
+(56, 16, 1),
+(57, 16, 2),
+(58, 16, 5),
+(59, 16, 8);
 
 -- --------------------------------------------------------
 
@@ -274,7 +275,8 @@ ALTER TABLE `breeds`
 -- Indexes for table `breed_color`
 --
 ALTER TABLE `breed_color`
-  ADD PRIMARY KEY (`breedID`,`colorID`),
+  ADD PRIMARY KEY (`breed_color_id`),
+  ADD UNIQUE KEY `breedID` (`breedID`,`colorID`) USING BTREE,
   ADD KEY `colorID` (`colorID`);
 
 --
@@ -316,6 +318,12 @@ ALTER TABLE `temperaments`
 --
 ALTER TABLE `breeds`
   MODIFY `breedID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `breed_color`
+--
+ALTER TABLE `breed_color`
+  MODIFY `breed_color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `categories`
