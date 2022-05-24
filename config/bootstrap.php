@@ -45,6 +45,9 @@ $errorMiddleware->setDefaultErrorHandler($customErrorHandler);
 // Add eloquent
 (require __DIR__ . '/eloquent.php')($container);
 
+//Require dependencies
+(require __DIR__ . '/dependencies.php')($container);
+
 // Register routes
 (require __DIR__ . '/routes.php')($app);
 

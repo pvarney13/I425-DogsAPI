@@ -27,6 +27,10 @@ class ComposerStaticInit5917264527b586c1a1699355b5a20017
         array (
             'voku\\' => 5,
         ),
+        'T' => 
+        array (
+            'Thiagoprz\\CompositeKey\\' => 23,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -70,6 +74,7 @@ class ComposerStaticInit5917264527b586c1a1699355b5a20017
         ),
         'D' => 
         array (
+            'DogBreedsAPI\\' => 13,
             'Doctrine\\Inflector\\' => 19,
             'DI\\' => 3,
         ),
@@ -83,6 +88,10 @@ class ComposerStaticInit5917264527b586c1a1699355b5a20017
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'Thiagoprz\\CompositeKey\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/thiagoprz/eloquent-composite-key/src',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
@@ -168,9 +177,9 @@ class ComposerStaticInit5917264527b586c1a1699355b5a20017
         ),
         'Illuminate\\Support\\' => 
         array (
-            0 => __DIR__ . '/..' . '/illuminate/macroable',
+            0 => __DIR__ . '/..' . '/illuminate/collections',
             1 => __DIR__ . '/..' . '/illuminate/conditionable',
-            2 => __DIR__ . '/..' . '/illuminate/collections',
+            2 => __DIR__ . '/..' . '/illuminate/macroable',
             3 => __DIR__ . '/..' . '/illuminate/support',
         ),
         'Illuminate\\Database\\' => 
@@ -193,6 +202,10 @@ class ComposerStaticInit5917264527b586c1a1699355b5a20017
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
+        'DogBreedsAPI\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/api',
+        ),
         'Doctrine\\Inflector\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector',
@@ -213,6 +226,7 @@ class ComposerStaticInit5917264527b586c1a1699355b5a20017
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'Thiagoprz\\CompositeKey\\HasCompositeKey' => __DIR__ . '/..' . '/thiagoprz/eloquent-composite-key/src/HasCompositeKey.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     );
