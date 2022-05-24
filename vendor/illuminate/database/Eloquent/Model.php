@@ -91,7 +91,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     public $preventsLazyLoading = false;
 
     /**
-     * The number of models to return for pagination.
+     * The number of Models to return for pagination.
      *
      * @var int
      */
@@ -133,7 +133,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     protected static $dispatcher;
 
     /**
-     * The array of booted models.
+     * The array of booted Models.
      *
      * @var array
      */
@@ -154,14 +154,14 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     protected static $globalScopes = [];
 
     /**
-     * The list of models classes that should not be affected with touch.
+     * The list of Models classes that should not be affected with touch.
      *
      * @var array
      */
     protected static $ignoreOnTouch = [];
 
     /**
-     * Indicates whether lazy loading should be restricted on all models.
+     * Indicates whether lazy loading should be restricted on all Models.
      *
      * @var bool
      */
@@ -307,7 +307,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     }
 
     /**
-     * Clear the list of booted models so they will be re-booted.
+     * Clear the list of booted Models so they will be re-booted.
      *
      * @return void
      */
@@ -559,7 +559,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     }
 
     /**
-     * Get all of the models from the database.
+     * Get all of the Models from the database.
      *
      * @param  array|mixed  $columns
      * @return \Illuminate\Database\Eloquent\Collection<int, static>
@@ -1082,7 +1082,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     protected function performUpdate(Builder $query)
     {
         // If the updating event returns false, we will cancel the update operation so
-        // developers can hook Validation systems into their models and cancel this
+        // developers can hook Validation systems into their Models and cancel this
         // operation if the model does not pass validation. Otherwise, we update.
         if ($this->fireModelEvent('updating') === false) {
             return false;
@@ -1097,7 +1097,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
 
         // Once we have run the update operation, we will fire the "updated" event for
         // this model instance. This will allow developers to hook into these after
-        // models are updated, giving them a chance to do any special processing.
+        // Models are updated, giving them a chance to do any special processing.
         $dirty = $this->getDirty();
 
         if (count($dirty) > 0) {
@@ -1187,7 +1187,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
 
         // If the table isn't incrementing we'll simply insert these attributes as they
         // are. These attribute arrays must contain an "id" column previously placed
-        // there by the developer as the manually determined key for these models.
+        // there by the developer as the manually determined key for these Models.
         else {
             if (empty($attributes)) {
                 return true;
@@ -1223,7 +1223,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     }
 
     /**
-     * Destroy the models for the given IDs.
+     * Destroy the Models for the given IDs.
      *
      * @param  \Illuminate\Support\Collection|array|int|string  $ids
      * @return int
@@ -1244,7 +1244,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
             return 0;
         }
 
-        // We will actually pull the models from the database table and call delete on
+        // We will actually pull the Models from the database table and call delete on
         // each of them individually so that their events get fired properly with a
         // correct set of attributes in case the developers wants to check these.
         $key = ($instance = new static)->getKeyName();
@@ -1286,8 +1286,8 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
             return false;
         }
 
-        // Here, we'll touch the owning models, verifying these timestamps get updated
-        // for the models. This will allow any caching to get broken on the parents
+        // Here, we'll touch the owning Models, verifying these timestamps get updated
+        // for the Models. This will allow any caching to get broken on the parents
         // by the timestamp. Then we will go ahead and delete the model instance.
         $this->touchOwners();
 
@@ -1424,7 +1424,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     }
 
     /**
-     * Get a new query to restore one or more models by their queueable IDs.
+     * Get a new query to restore one or more Models by their queueable IDs.
      *
      * @param  array|int  $ids
      * @return \Illuminate\Database\Eloquent\Builder
@@ -1620,7 +1620,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     }
 
     /**
-     * Determine if two models have the same ID and belong to the same table.
+     * Determine if two Models have the same ID and belong to the same table.
      *
      * @param  \Illuminate\Database\Eloquent\Model|null  $model
      * @return bool
@@ -1634,7 +1634,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     }
 
     /**
-     * Determine if two models are not the same.
+     * Determine if two Models are not the same.
      *
      * @param  \Illuminate\Database\Eloquent\Model|null  $model
      * @return bool
@@ -1710,7 +1710,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     }
 
     /**
-     * Unset the connection resolver for models.
+     * Unset the connection resolver for Models.
      *
      * @return void
      */
@@ -2001,7 +2001,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     }
 
     /**
-     * Get the number of models to return per page.
+     * Get the number of Models to return per page.
      *
      * @return int
      */
@@ -2011,7 +2011,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
     }
 
     /**
-     * Set the number of models to return per page.
+     * Set the number of Models to return per page.
      *
      * @param  int  $perPage
      * @return $this

@@ -715,7 +715,7 @@ trait QueriesRelationships
     }
 
     /**
-     * Add subselect queries to include the existence of related models.
+     * Add subselect queries to include the existence of related Models.
      *
      * @param  string|array  $relation
      * @return $this

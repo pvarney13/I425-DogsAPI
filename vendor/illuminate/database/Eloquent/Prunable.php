@@ -8,7 +8,7 @@ use LogicException;
 trait Prunable
 {
     /**
-     * Prune all prunable models in the database.
+     * Prune all prunable Models in the database.
      *
      * @param  int  $chunkSize
      * @return int

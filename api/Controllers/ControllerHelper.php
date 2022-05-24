@@ -1,9 +1,9 @@
 <?php
 /**
- * Author: Lily Weber
- * Date: 5/22/2022
+ * Author: Piper Varney
+ * Date: 5/23/22
  * File: ControllerHelper.php
- * Description: define the controller helper class
+ * Description:
  */
 namespace DogBreedsAPI\Controllers;
 

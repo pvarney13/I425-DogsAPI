@@ -22,7 +22,7 @@ class HasOneThrough extends HasManyThrough
     }
 
     /**
-     * Initialize the relation on a set of models.
+     * Initialize the relation on a set of Models.
      *
      * @param  array  $models
      * @param  string  $relation
@@ -49,7 +49,7 @@ class HasOneThrough extends HasManyThrough
     {
         $dictionary = $this->buildDictionary($results);
 
-        // Once we have the dictionary we can simply spin through the parent models to
+        // Once we have the dictionary we can simply spin through the parent Models to
         // link them up with their children using the keyed dictionary to make the
         // matching very convenient and easy work. Then we'll just return them.
         foreach ($models as $model) {

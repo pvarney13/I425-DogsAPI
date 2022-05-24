@@ -32,6 +32,13 @@ return function (App $app) {
         $group->get('/{breedID}', 'Breed:view');
 
     });
+    //Route group for /categories pattern
+    $group->group('/categories', function (RouteCollectorProxy $group) {
+        //Call the index method defined in the CategoriesController class
+        //Categories is the container key defined in dependencies.php.
+        $group->get('', 'Categories:index');
+        $group->get('/{id}', 'Categories:view');
+    });
 
         //Route group for /breedcolor pattern
         $group->group('/breedcolor', function (RouteCollectorProxy $group) {

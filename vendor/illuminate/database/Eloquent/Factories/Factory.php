@@ -32,7 +32,7 @@ abstract class Factory
     protected $model;
 
     /**
-     * The number of models that should be generated.
+     * The number of Models that should be generated.
      *
      * @var int|null
      */
@@ -74,7 +74,7 @@ abstract class Factory
     protected $afterCreating;
 
     /**
-     * The name of the database connection that will be used to create the models.
+     * The name of the database connection that will be used to create the Models.
      *
      * @var string|null
      */
@@ -157,7 +157,7 @@ abstract class Factory
     }
 
     /**
-     * Get a new factory instance for the given number of models.
+     * Get a new factory instance for the given number of Models.
      *
      * @param  int  $count
      * @return static
@@ -218,7 +218,7 @@ abstract class Factory
     }
 
     /**
-     * Create a collection of models and persist them to the database.
+     * Create a collection of Models and persist them to the database.
      *
      * @param  iterable<int, array<string, mixed>>  $records
      * @return \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Database\Eloquent\Model|TModel>
@@ -233,7 +233,7 @@ abstract class Factory
     }
 
     /**
-     * Create a collection of models and persist them to the database without dispatching any model events.
+     * Create a collection of Models and persist them to the database without dispatching any model events.
      *
      * @param  iterable<int, array<string, mixed>>  $records
      * @return \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Database\Eloquent\Model|TModel>
@@ -246,7 +246,7 @@ abstract class Factory
     }
 
     /**
-     * Create a collection of models and persist them to the database.
+     * Create a collection of Models and persist them to the database.
      *
      * @param  (callable(array<string, mixed>): array<string, mixed>)|array<string, mixed>  $attributes
      * @param  \Illuminate\Database\Eloquent\Model|null  $parent
@@ -274,7 +274,7 @@ abstract class Factory
     }
 
     /**
-     * Create a collection of models and persist them to the database without dispatching any model events.
+     * Create a collection of Models and persist them to the database without dispatching any model events.
      *
      * @param  array<string, mixed>  $attributes
      * @param  \Illuminate\Database\Eloquent\Model|null  $parent
@@ -345,7 +345,7 @@ abstract class Factory
     }
 
     /**
-     * Create a collection of models.
+     * Create a collection of Models.
      *
      * @param  (callable(array<string, mixed>): array<string, mixed>)|array<string, mixed>  $attributes
      * @param  \Illuminate\Database\Eloquent\Model|null  $parent
@@ -656,7 +656,7 @@ abstract class Factory
     }
 
     /**
-     * Specify how many models should be generated.
+     * Specify how many Models should be generated.
      *
      * @param  int|null  $count
      * @return static
@@ -667,7 +667,7 @@ abstract class Factory
     }
 
     /**
-     * Specify the database connection that should be used to generate models.
+     * Specify the database connection that should be used to generate Models.
      *
      * @param  string  $connection
      * @return static

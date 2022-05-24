@@ -123,7 +123,7 @@ abstract class Relation implements BuilderContract
     abstract public function addEagerConstraints(array $models);
 
     /**
-     * Initialize the relation on a set of models.
+     * Initialize the relation on a set of Models.
      *
      * @param  array  $models
      * @param  string  $relation
@@ -196,7 +196,7 @@ abstract class Relation implements BuilderContract
     }
 
     /**
-     * Touch all of the related models for the relationship.
+     * Touch all of the related Models for the relationship.
      *
      * @return void
      */
@@ -265,7 +265,7 @@ abstract class Relation implements BuilderContract
     }
 
     /**
-     * Get all of the primary keys for an array of models.
+     * Get all of the primary keys for an array of Models.
      *
      * @param  array  $models
      * @param  string|null  $key
@@ -415,7 +415,7 @@ abstract class Relation implements BuilderContract
     }
 
     /**
-     * Define the morph map for polymorphic relations and require all morphed models to be explicitly mapped.
+     * Define the morph map for polymorphic relations and require all morphed Models to be explicitly mapped.
      *
      * @param  array  $map
      * @param  bool  $merge

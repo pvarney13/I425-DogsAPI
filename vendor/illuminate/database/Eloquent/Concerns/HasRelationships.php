@@ -211,7 +211,7 @@ trait HasRelationships
         }
 
         // Once we have the foreign key names we'll just create a new Eloquent query
-        // for the related models and return the relationship instance which will
+        // for the related Models and return the relationship instance which will
         // actually be responsible for retrieving and hydrating every relation.
         $ownerKey = $ownerKey ?: $instance->getKeyName();
 
@@ -494,7 +494,7 @@ trait HasRelationships
         $relatedPivotKey = $relatedPivotKey ?: $instance->getForeignKey();
 
         // If no table name was provided, we can guess it by concatenating the two
-        // models using underscores in alphabetical order. The two model names
+        // Models using underscores in alphabetical order. The two model names
         // are transformed to snake case from their default CamelCase also.
         if (is_null($table)) {
             $table = $this->joiningTable($related, $instance);
@@ -649,9 +649,9 @@ trait HasRelationships
      */
     public function joiningTable($related, $instance = null)
     {
-        // The joining table name, by convention, is simply the snake cased models
+        // The joining table name, by convention, is simply the snake cased Models
         // sorted alphabetically and concatenated with an underscore, so we can
-        // just sort the models and join them together to get the table name.
+        // just sort the Models and join them together to get the table name.
         $segments = [
             $instance ? $instance->joiningTableSegment()
                       : Str::snake(class_basename($related)),
