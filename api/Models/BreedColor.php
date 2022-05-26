@@ -25,6 +25,19 @@ class BreedColor extends Model{
     //if created_at and updated_at columns are not used
     public $timestamps=false;
 
+    //define the one to many (inverse) relationship between Professor and MyClass
+    public function color(){
+        return $this->belongsTo(Color::class, 'colorID');
+
+    }
+
+    //define the one to many (inverse) relationship between Course and MyClass
+    public function breed(){
+        return $this->belongsTo(Breed::class, 'breedID');
+    }
+
+
+
     //retrieve all breed color combos
     public static function getBreedColor(){
 

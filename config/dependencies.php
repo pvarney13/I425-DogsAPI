@@ -12,6 +12,7 @@ use DI\Container;
 use DogBreedsAPI\Controllers\BreedController;
 use DogBreedsAPI\Controllers\BreedColorController;
 use DogBreedsAPI\Controllers\CategoriesController;
+use DogBreedsAPI\Controllers\ColorController;
 
 
 return function(Container $container){
@@ -28,7 +29,10 @@ return function(Container $container){
         $container->set('Categories', function() {
             return new CategoriesController();
         });
-
+    // Set a dependency called "Color
+    $container->set('Color', function() {
+        return new ColorController();
+    });
 
 
 };

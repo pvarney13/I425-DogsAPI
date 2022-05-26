@@ -30,6 +30,7 @@ return function (App $app) {
         $group->get('', 'Breed:index');
         //Call the view method defined in the BreedController class
         $group->get('/{breedID}', 'Breed:view');
+        $group->get('/{id}/colors', 'Breed:getBreedColors');
 
     });
     //Route group for /categories pattern
@@ -46,6 +47,15 @@ return function (App $app) {
             $group->get('', 'BreedColor:index');
             //Call the view method defined in the BreedController class
             $group->get('/{breed_color_id}', 'BreedColor:view');
+
+        });
+        //Route group for /colors pattern
+        $group->group('/colors', function (RouteCollectorProxy $group) {
+            //Call the index method defined in the BreedController class
+            $group->get('', 'Color:index');
+            //Call the view method defined in the BreedController class
+            $group->get('/{id}', 'Color:view');
+            $group->get('/{id}/breeds', 'Color:getColorsBreed');
 
         });
 });

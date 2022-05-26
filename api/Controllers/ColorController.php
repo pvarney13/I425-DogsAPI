@@ -1,37 +1,38 @@
 <?php
 /**
  * Author: Lily Weber
- * Date: 5/23/2022
- * File: BreedController.php
+ * Date: 5/25/2022
+ * File: ColorController.php
  * Description:
  */
 namespace DogBreedsAPI\Controllers;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use DogBreedsAPI\Models\Breed;
+use DogBreedsAPI\Models\Color;
 use DogBreedsAPI\Controllers\ControllerHelper as Helper;
 
-class BreedController {
-
-    //Retrieve all the breeds
+class ColorController {
+    //list all categories
     public function index(Request $request, Response $response, array $args) : Response {
-        $results = Breed::getBreeds();
+        $results = Color::getColors();
+
         return Helper::withJson($response, $results, 200);
     }
 
-    //View a specific breed by ID
+    //view a specific category
     public function view(Request $request, Response $response, array $args) : Response {
-        $results = Breed::getBreedByID($args['breedID']);
+        $id = $args['id'];
+        $results = Color::getColorById($id);
+
         return Helper::withJson($response, $results, 200);
     }
 
     //View all colors of a breed
-    public function getBreedColors(Request $request, Response $response, array $args) :
+    public function getColorsBreed(Request $request, Response $response, array $args) :
     Response {
         $id = $args['id'];
-        $results = Breed::getBreedColors($id);
+        $results = Color::getColorsBreed($id);
         return Helper::withJson($response, $results, 200);
     }
-
 }

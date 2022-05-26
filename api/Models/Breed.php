@@ -25,11 +25,24 @@ class Breed extends Model
 //If the created_at and updated_at columns are not used
     public $timestamps = false;
 
+//define the one to many (inverse) relationship between category and breed
+    public function categories(){
+        return $this->belongsTo(Categories::class, 'categoryID');
+    }
+
+    /* Define the many-to-many relationship between Color and Breed model classes.
+*  The third intermediate table linking the colors and breeds tables in DB is
+ * breed_color. In the breed_color table, breedID and colorID are the foreign keys.
+*/
+    public function color() {
+        return $this->belongsToMany(Color::class, 'breed_color', 'breedID', 'colorID');
+    }
+
 //Retrieve all breeds
     public static function getBreeds()
     {
-        $breeds = self::all();
-        //$breeds=self::with(['sizeID', 'temperamentID', 'categoryID', 'originID'])->get();
+        //$breeds = self::all();
+        $breeds=self::with('categories')->get();
         return $breeds;
     }
 
@@ -37,7 +50,13 @@ class Breed extends Model
     public static function getBreedByID(int $breedID)
     {
         $breed = self::findOrFail($breedID);
-        //$breed->load("sizeID")->load("temperamentID")->load("categoryID")->load("originID");
+        $breed->load('categories');
         return $breed;
+    }
+
+    //Get a student's classes
+    public static function getBreedColors(string $id)
+    {
+        return self::findOrFail($id)->color;
     }
 }

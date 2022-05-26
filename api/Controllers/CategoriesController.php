@@ -10,7 +10,7 @@ namespace DogBreedsAPI\Controllers;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use DogBreedsAPI\Models\Categories;
-use MyCollegeAPI\Controllers\ControllerHelper as Helper;
+use DogBreedsAPI\Controllers\ControllerHelper as Helper;
 
 class CategoriesController {
     //list all categories
