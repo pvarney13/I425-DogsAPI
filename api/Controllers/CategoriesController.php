@@ -11,6 +11,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use DogBreedsAPI\Models\Categories;
 use DogBreedsAPI\Controllers\ControllerHelper as Helper;
+use DogBreedsAPI\Validation\Validator;
 
 class CategoriesController {
     //list all categories
@@ -25,6 +26,43 @@ class CategoriesController {
         $id = $args['id'];
         $results = Categories::getCategoryById($id);
 
+        return Helper::withJson($response, $results, 200);
+    }
+
+    //Update a category
+    public function update(Request $request, Response $response, array $args) : Response {
+        //Validate the request
+        $validation = Validator::validateCategory($request);
+        //if validation failed
+        if(!$validation) {
+            $results = [
+                'status' => "Validation failed",
+                'errors' => Validator::getErrors()
+            ];
+            return Helper::withJson($response, $results, 500);
+        }
+        $category = Categories::updateCategory($request);
+        if(!$category) {
+            $results['status']= "Category cannot been updated.";
+            return Helper::withJson($response, $results, 500);
+        }
+        $results = [
+            'status' => "Category has been updated.",
+            'data' => $category
+        ];
+        return Helper::withJson($response, $results, 200);
+    }
+
+    //Delete a category
+    public function delete(Request $request, Response $response, array $args) : Response {
+        $category = Categories::deleteCategory($request);
+
+        if(!$category) {
+            $results['status']= "Category cannot been deleted.";
+            return Helper::withJson($response, $results, 500);
+        }
+
+        $results['status'] = "Category has been deleted.";
         return Helper::withJson($response, $results, 200);
     }
 }

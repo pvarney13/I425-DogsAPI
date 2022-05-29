@@ -39,6 +39,8 @@ return function (App $app) {
         //Categories is the container key defined in dependencies.php.
         $group->get('', 'Categories:index');
         $group->get('/{id}', 'Categories:view');
+        $group->put('/{id}', 'Categories:update');
+        $group->delete('/{id}', 'Categories:delete');
     });
 
         //Route group for /breedcolor pattern
@@ -56,6 +58,8 @@ return function (App $app) {
             //Call the view method defined in the BreedController class
             $group->get('/{id}', 'Color:view');
             $group->get('/{id}/breeds', 'Color:getColorsBreed');
+            $group->put('/{id}', 'Color:update');
+            $group->delete('/{id}', 'Color:delete');
 
         });
 });

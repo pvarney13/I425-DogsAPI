@@ -51,4 +51,32 @@ class Color extends Model{
     {
         return self::findOrFail($id)->breed;
     }
+
+    //Update a color
+    public static function updateColor($request) {
+        //Retrieve parameters from request body
+        $params = $request->getParsedBody();
+        //Retrieve id from the request url
+        $id = $request->getAttribute('id');
+        $color = self::findOrFail($id);
+        if(!$color) {
+            return false;
+        }
+        //update attributes of the category
+        foreach($params as $field => $value) {
+            $color->$field = $value;
+        }
+        //save the category into the database
+        $color->save();
+        return $color;
+    }
+
+
+    //Delete a color
+    public static function deleteColor($request) {
+        //Retrieve id from the request
+        $id = $request->getAttribute('id');
+        $color = self::findOrFail($id);
+        return($color ? $color->delete() : $color);
+    }
 }

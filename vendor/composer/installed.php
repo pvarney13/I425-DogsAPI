@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'e91270d23c04fe9c5546ef343ed0161634d975ff',
+        'reference' => 'edca0d6fde5414879ea7e7fd39971ecff889c82e',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'e91270d23c04fe9c5546ef343ed0161634d975ff',
+            'reference' => 'edca0d6fde5414879ea7e7fd39971ecff889c82e',
             'dev_requirement' => false,
         ),
         'doctrine/inflector' => array(
@@ -251,6 +251,24 @@
             'reference' => '120b605dfeb996808c31b6477290a714d356e822',
             'dev_requirement' => false,
         ),
+        'respect/stringifier' => array(
+            'pretty_version' => '0.2.0',
+            'version' => '0.2.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../respect/stringifier',
+            'aliases' => array(),
+            'reference' => 'e55af3c8aeaeaa2abb5fa47a58a8e9688cc23b59',
+            'dev_requirement' => false,
+        ),
+        'respect/validation' => array(
+            'pretty_version' => '2.2.3',
+            'version' => '2.2.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../respect/validation',
+            'aliases' => array(),
+            'reference' => '4c21a7ffc9a4915673cb2c2843963919e664e627',
+            'dev_requirement' => false,
+        ),
         'slim/psr7' => array(
             'pretty_version' => '1.5',
             'version' => '1.5.0.0',
@@ -373,15 +391,6 @@
             'provided' => array(
                 0 => '2.3|3.0',
             ),
-        ),
-        'thiagoprz/eloquent-composite-key' => array(
-            'pretty_version' => '1.0.1',
-            'version' => '1.0.1.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../thiagoprz/eloquent-composite-key',
-            'aliases' => array(),
-            'reference' => '43012fa195db8517a5344355aa83cd39aaa466aa',
-            'dev_requirement' => false,
         ),
         'voku/portable-ascii' => array(
             'pretty_version' => '2.0.1',

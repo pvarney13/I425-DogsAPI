@@ -39,4 +39,32 @@ class Categories extends Model{
         $category->load("breeds");
         return $category;
     }
+
+    //Update a category
+    public static function updateCategory($request) {
+        //Retrieve parameters from request body
+        $params = $request->getParsedBody();
+        //Retrieve id from the request url
+        $id = $request->getAttribute('id');
+        $category = self::findOrFail($id);
+        if(!$category) {
+            return false;
+        }
+        //update attributes of the category
+        foreach($params as $field => $value) {
+            $category->$field = $value;
+        }
+        //save the category into the database
+        $category->save();
+        return $category;
+    }
+
+
+    //Delete a category
+    public static function deleteCategory($request) {
+        //Retrieve id from the request
+        $id = $request->getAttribute('id');
+        $category = self::findOrFail($id);
+        return($category ? $category->delete() : $category);
+    }
 }
