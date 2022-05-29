@@ -16,7 +16,7 @@ class BreedController {
 
     //Retrieve all the breeds
     public function index(Request $request, Response $response, array $args) : Response {
-        $results = Breed::getBreeds();
+        $results = Breed::getBreeds($request);
         return Helper::withJson($response, $results, 200);
     }
 
