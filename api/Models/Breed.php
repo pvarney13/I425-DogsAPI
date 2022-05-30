@@ -59,7 +59,7 @@ class Breed extends Model
         $links = self::getLinks($request, $limit, $offset);
 
         //build query
-        $query = self::with('classes');  //build the query to get all courses
+        $query = self::with('categories');  //build the query to get all courses
         $query = $query->skip($offset)->take($limit);  //limit the rows
 
         //code for sorting
@@ -151,4 +151,19 @@ class Breed extends Model
 
         return $sort_key_array;
     }
+
+    //Search for breeds
+    public static function searchBreeds($term) {
+        if(is_numeric($term)) {
+            $query = self::where('breedID', '=', $term)
+                ->orWhere('sizeID', '=', $term)
+                ->orWhere('temperamentID', '=', $term)
+                ->orWhere('categoryID', '=', $term)
+                ->orWhere('originID', '=', $term);
+        } else {
+            $query = self::where('name', 'like', "%$term%");
+        }
+        return $query->get();
+    }
+
 }
