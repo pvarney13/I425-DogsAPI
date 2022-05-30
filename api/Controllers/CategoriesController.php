@@ -16,8 +16,12 @@ use DogBreedsAPI\Validation\Validator;
 class CategoriesController {
     //list all categories
     public function index(Request $request, Response $response, array $args) : Response {
-        $results = Categories::getCategories();
-
+        //$results = Categories::getCategories();
+        //Get querystring variables from url
+        $params = $request->getQueryParams();
+        $term = array_key_exists('q', $params) ? $params['q'] : "";
+        //Call the model method to get categories
+        $results = ($term) ? Categories::searchCategories($term) : Categories::getCategories();
         return Helper::withJson($response, $results, 200);
     }
 

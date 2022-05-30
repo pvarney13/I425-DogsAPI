@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2022 at 03:15 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: May 26, 2022 at 04:28 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `dogbreeds_db`
 --
+DROP DATABASE IF EXISTS `dogbreeds_db`;
+CREATE DATABASE IF NOT EXISTS `dogbreeds_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `dogbreeds_db`;
 
 -- --------------------------------------------------------
 

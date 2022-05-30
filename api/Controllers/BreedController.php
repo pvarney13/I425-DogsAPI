@@ -16,7 +16,13 @@ class BreedController {
 
     //Retrieve all the breeds
     public function index(Request $request, Response $response, array $args) : Response {
-        $results = Breed::getBreeds($request);
+        //$results = Breed::getBreeds($request);
+        //Get querystring variables from url
+        $params = $request->getQueryParams();
+        $term = array_key_exists('q', $params) ? $params['q'] : "";
+        //Call the model method to get breeds
+        $results = ($term) ? Breed::searchBreeds($term) : Breed::getBreeds($request);
+
         return Helper::withJson($response, $results, 200);
     }
 

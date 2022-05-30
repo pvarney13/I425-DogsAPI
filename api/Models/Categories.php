@@ -67,4 +67,15 @@ class Categories extends Model{
         $category = self::findOrFail($id);
         return($category ? $category->delete() : $category);
     }
+
+    //Search for categories
+    public static function searchCategories($term) {
+        if(is_numeric($term)) {
+            $query = self::where('categoryID', '=', $term);
+        } else {
+            $query = self::where('categoryName', 'like', "%$term%")
+                ->orWhere('categoryDesc', 'like', "%$term%");
+        }
+        return $query->get();
+    }
 }
