@@ -52,6 +52,21 @@ class Color extends Model{
         return self::findOrFail($id)->breed;
     }
 
+    //Insert a new color
+    public static function createColor($request) {
+        //Retrieve parameters from request body
+        $params = $request->getParsedBody();
+        //Create a new Color instance
+        $color = new Color();
+        //Set the category's attributes
+        foreach($params as $field => $value) {
+            $color->$field = $value;
+        }
+        //Insert the category into the database
+        $color->save();
+        return $color;
+    }
+
     //Update a color
     public static function updateColor($request) {
         //Retrieve parameters from request body

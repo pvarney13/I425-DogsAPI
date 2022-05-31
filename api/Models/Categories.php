@@ -40,6 +40,21 @@ class Categories extends Model{
         return $category;
     }
 
+    //Insert a new category
+    public static function createCategory($request) {
+        //Retrieve parameters from request body
+        $params = $request->getParsedBody();
+        //Create a new Category instance
+        $category = new Categories();
+        //Set the category's attributes
+        foreach($params as $field => $value) {
+            $category->$field = $value;
+        }
+        //Insert the category into the database
+        $category->save();
+        return $category;
+    }
+
     //Update a category
     public static function updateCategory($request) {
         //Retrieve parameters from request body

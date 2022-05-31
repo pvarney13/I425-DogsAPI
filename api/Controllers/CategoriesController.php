@@ -29,6 +29,22 @@ class CategoriesController {
         return Helper::withJson($response, $results, 200);
     }
 
+//Create a category
+    public function create(Request $request, Response $response, array $args) : Response {
+        //Validate the request
+        $validation = Validator::validateCategory($request);
+        if(!$validation) {
+            $results = [
+                'status' => "Validation failed",
+                'errors' => Validator::getErrors()
+            ];
+            return Helper::withJson($response, $results, 500);
+        }
+        //Create a new category
+        $category = Categories::createCategory($request);
+        //Other code continues here.
+    }
+
     //Update a category
     public function update(Request $request, Response $response, array $args) : Response {
         //Validate the request
