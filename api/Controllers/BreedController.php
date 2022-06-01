@@ -68,7 +68,7 @@ class BreedController {
     //Update a breed
     public function update(Request $request, Response $response, array $args) : Response {
         //Validate the request
-        $validation = Validator::validateCategory($request);
+        $validation = Validator::validateBreed($request);
         //if validation failed
         if(!$validation) {
             $results = [
