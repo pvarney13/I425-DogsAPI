@@ -26,17 +26,69 @@ class Categories extends Model{
     }
 
     //Retrieve all categories
-    public static function getCategories() {
+    public static function getCategories($request) {
         //Retrieve all categories
         //$categories = self::all();
-        $categories=self::with('breeds')->get();
-        return $categories;
+        //$categories=self::with('breeds')->get();
+        //return $categories;
+        /*********** code for pagination and sorting *************************/
+        //get the total number of row count
+        $count = self::count();
+
+        //Get querystring variables from url
+        $params = $request->getQueryParams();
+
+        //do limit and offset exist?
+        $limit = array_key_exists('limit', $params) ? (int)$params['limit'] : 10;   //items per page
+        $offset = array_key_exists('offset', $params) ? (int)$params['offset'] : 0;  //offset of the first item
+
+        //pagination
+        $links = self::getLinks($request, $limit, $offset);
+
+        //build query
+        $query = self::with('categories');  //build the query to get all courses
+        $query = $query->skip($offset)->take($limit);  //limit the rows
+
+        //code for sorting
+        $sort_key_array = self::getSortKeys($request); //soft the output by one or more columns
+        foreach ($sort_key_array as $column => $direction) { $query->orderBy($column, $direction);
+        }
+
+        //retrieve the breeds
+        $breeds = $query->get();  //Finally, run the query and get the results
+
+        //construct the data for response
+        $results = [
+            'totalCount' => $count,
+            'limit' => $limit,
+            'offset' => $offset,
+            'links' => $links,
+            'sort' => $sort_key_array,
+            'data' => $breeds
+        ];
+
+        return $results;
     }
 
     //View a specific category by id
     public static function getCategoryById(string $id) {
         $category = self::findOrFail($id);
         $category->load("breeds");
+        return $category;
+    }
+
+    //Insert a new category
+    public static function createCategory($request) {
+        //Retrieve parameters from request body
+        $params = $request->getParsedBody();
+        //Create a new Category instance
+        $category = new Categories();
+        //Set the category's attributes
+        foreach($params as $field => $value) {
+            $category->$field = $value;
+        }
+        //Insert the category into the database
+        $category->save();
         return $category;
     }
 

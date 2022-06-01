@@ -38,6 +38,22 @@ class ColorController {
         return Helper::withJson($response, $results, 200);
     }
 
+    //Create a color
+    public function create(Request $request, Response $response, array $args) : Response {
+        //Validate the request
+        $validation = Validator::validateColor($request);
+        if(!$validation) {
+            $results = [
+                'status' => "Validation failed",
+                'errors' => Validator::getErrors()
+            ];
+            return Helper::withJson($response, $results, 500);
+        }
+        //Create a new color
+        $color = Color::createColor($request);
+        //Other code continues here.
+    }
+
     //Update a category
     public function update(Request $request, Response $response, array $args) : Response {
         //Validate the request

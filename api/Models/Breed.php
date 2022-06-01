@@ -166,4 +166,45 @@ class Breed extends Model
         return $query->get();
     }
 
+    //Insert a new breed
+    public static function createBreed($request) {
+        //Retrieve parameters from request body
+        $params = $request->getParsedBody();
+        //Create a new Breed instance
+        $breed = new Breed();
+        //Set the breed's attributes
+        foreach($params as $field => $value) {
+            $breed->$field = $value;
+        }
+        //Insert the breed into the database
+        $breed->save();
+        return $breed;
+    }
+
+    //Update a breed
+    public static function updateBreed($request) {
+        //Retrieve parameters from request body
+        $params = $request->getParsedBody();
+        //Retrieve id from the request url
+        $id = $request->getAttribute('id');
+        $breed = self::findOrFail($id);
+        if(!$breed) {
+            return false;
+        }
+        //update attributes of the breed
+        foreach($params as $field => $value) {
+            $breed->$field = $value;
+        }
+        //save the breed into the database
+        $breed->save();
+        return $breed;
+    }
+
+    //Delete a breed
+    public static function deleteBreed($request) {
+        //Retrieve id from the request
+        $id = $request->getAttribute('id');
+        $breed = self::findOrFail($id);
+        return($breed ? $breed->delete() : $breed);
+    }
 }

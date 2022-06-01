@@ -24,6 +24,7 @@ return function (App $app) {
     });
 //Route group for api/v1 pattern
     $app->group('/api/v1', function(RouteCollectorProxy $group){
+
     //Route group for /breeds pattern
     $group->group('/breeds', function (RouteCollectorProxy $group) {
         //Call the index method defined in the BreedController class
@@ -31,6 +32,9 @@ return function (App $app) {
         //Call the view method defined in the BreedController class
         $group->get('/{breedID}', 'Breed:view');
         $group->get('/{id}/colors', 'Breed:getBreedColors');
+        $group->post('', 'Breed:create');
+        $group->put('/{id}', 'Breed:update');
+        $group->delete('/{id}', 'Breed:delete');
 
     });
     //Route group for /categories pattern
@@ -39,6 +43,7 @@ return function (App $app) {
         //Categories is the container key defined in dependencies.php.
         $group->get('', 'Categories:index');
         $group->get('/{id}', 'Categories:view');
+        $group->post('', 'Categories:create');
         $group->put('/{id}', 'Categories:update');
         $group->delete('/{id}', 'Categories:delete');
     });
@@ -58,6 +63,7 @@ return function (App $app) {
             //Call the view method defined in the BreedController class
             $group->get('/{id}', 'Color:view');
             $group->get('/{id}/breeds', 'Color:getColorsBreed');
+            $group->post('', 'Color:create');
             $group->put('/{id}', 'Color:update');
             $group->delete('/{id}', 'Color:delete');
 

@@ -40,4 +40,57 @@ class BreedController {
         return Helper::withJson($response, $results, 200);
     }
 
+    //Create a breed
+    public function create(Request $request, Response $response, array $args) : Response {
+        //Validate the request
+        $validation = Validator::validateCategory($request);
+        if(!$validation) {
+            $results = [
+                'status' => "Validation failed",
+                'errors' => Validator::getErrors()
+            ];
+            return Helper::withJson($response, $results, 500);
+        }
+        //Create a new breed
+        $breed = Breed::createBreed($request);
+        //Other code continues here.
+    }
+
+    //Update a breed
+    public function update(Request $request, Response $response, array $args) : Response {
+        //Validate the request
+        $validation = Validator::validateCategory($request);
+        //if validation failed
+        if(!$validation) {
+            $results = [
+                'status' => "Validation failed",
+                'errors' => Validator::getErrors()
+            ];
+            return Helper::withJson($response, $results, 500);
+        }
+        $breed = Breed::updateBreed($request);
+        if(!$breed) {
+            $results['status']= "Breed cannot been updated.";
+            return Helper::withJson($response, $results, 500);
+        }
+        $results = [
+            'status' => "Breed has been updated.",
+            'data' => $breed
+        ];
+        return Helper::withJson($response, $results, 200);
+    }
+
+    //Delete a breed
+    public function delete(Request $request, Response $response, array $args) : Response {
+        $breed = Breed::deleteBreed($request);
+
+        if(!$breed) {
+            $results['status']= "Breed cannot be deleted.";
+            return Helper::withJson($response, $results, 500);
+        }
+
+        $results['status'] = "Breed has been deleted.";
+        return Helper::withJson($response, $results, 200);
+    }
+
 }
