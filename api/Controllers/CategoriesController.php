@@ -21,7 +21,7 @@ class CategoriesController {
         $params = $request->getQueryParams();
         $term = array_key_exists('q', $params) ? $params['q'] : "";
         //Call the model method to get categories
-        $results = ($term) ? Categories::searchCategories($term) : Categories::getCategories();
+        $results = ($term) ? Categories::searchCategories($term) : Categories::getCategories($request);
         return Helper::withJson($response, $results, 200);
     }
 
@@ -46,7 +46,15 @@ class CategoriesController {
         }
         //Create a new category
         $category = Categories::createCategory($request);
-        //Other code continues here.
+        if(!$category) {
+            $results['status']= "Category cannot been created.";
+            return Helper::withJson($response, $results, 500);
+        }
+        $results = [
+            'status' => "Category has been created.",
+            'data' => $category
+        ];
+        return Helper::withJson($response, $results, 200);
     }
 
     //Update a category

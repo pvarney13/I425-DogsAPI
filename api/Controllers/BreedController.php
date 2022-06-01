@@ -11,6 +11,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use DogBreedsAPI\Models\Breed;
 use DogBreedsAPI\Controllers\ControllerHelper as Helper;
+use DogBreedsAPI\Validation\Validator;
 
 class BreedController {
 
@@ -53,7 +54,15 @@ class BreedController {
         }
         //Create a new breed
         $breed = Breed::createBreed($request);
-        //Other code continues here.
+        if(!$breed) {
+            $results['status']= "Breed cannot been created.";
+            return Helper::withJson($response, $results, 500);
+        }
+        $results = [
+            'status' => "Breed has been created.",
+            'data' => $breed
+        ];
+        return Helper::withJson($response, $results, 200);
     }
 
     //Update a breed

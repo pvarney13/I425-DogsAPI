@@ -51,7 +51,15 @@ class ColorController {
         }
         //Create a new color
         $color = Color::createColor($request);
-        //Other code continues here.
+        if(!$color) {
+            $results['status']= "Color cannot been created.";
+            return Helper::withJson($response, $results, 500);
+        }
+        $results = [
+            'status' => "Color has been created.",
+            'data' => $color
+        ];
+        return Helper::withJson($response, $results, 200);
     }
 
     //Update a category
