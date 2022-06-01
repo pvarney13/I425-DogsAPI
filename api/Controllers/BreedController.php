@@ -44,7 +44,7 @@ class BreedController {
     //Create a breed
     public function create(Request $request, Response $response, array $args) : Response {
         //Validate the request
-        $validation = Validator::validateCategory($request);
+        $validation = Validator::validateBreed($request);
         if(!$validation) {
             $results = [
                 'status' => "Validation failed",

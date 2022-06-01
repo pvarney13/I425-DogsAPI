@@ -52,4 +52,18 @@ class Validator {
 
         return self::validate($request, $rules);
     }
+    //Validate category data.
+    public static function validateBreed($request) : bool {
+        //Define all the validation rules
+        $rules = [
+            'breedID' => v::notEmpty()->numericVal(),
+            'name' => v::alnum(' '),
+            'sizeID' => v::numericVal(),
+            'temperamentID' => v::numericVal(),
+            'categoryID' => v::numericVal(),
+            'originID' => v::numericVal()
+        ];
+
+        return self::validate($request, $rules);
+    }
 }
