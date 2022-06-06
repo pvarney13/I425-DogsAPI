@@ -9,6 +9,10 @@ use Slim\App;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Routing\RouteCollectorProxy;
+use DogBreedsAPI\Authentication\{
+    MyAuthenticator,
+    BasicAuthenticator
+};
 
 return function (App $app) {
     // Add an app route
@@ -35,7 +39,7 @@ return function (App $app) {
 //Route group for api/v1 pattern
     $app->group('/api/v1', function(RouteCollectorProxy $group){
 
-    //Route group for /breeds pattern
+        //Route group for /breeds pattern
     $group->group('/breeds', function (RouteCollectorProxy $group) {
         //Call the index method defined in the BreedController class
         $group->get('', 'Breed:index');
@@ -78,5 +82,7 @@ return function (App $app) {
             $group->delete('/{id}', 'Color:delete');
 
         });
-});
+//}); //No auth
+   // })->add(new MyAuthenticator());  //MyAuthentication
+    })->add(new BasicAuthenticator()); // BasicAuthentication
 };
