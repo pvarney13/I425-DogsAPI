@@ -13,6 +13,8 @@ use DogBreedsAPI\Controllers\BreedController;
 use DogBreedsAPI\Controllers\BreedColorController;
 use DogBreedsAPI\Controllers\CategoriesController;
 use DogBreedsAPI\Controllers\ColorController;
+use DogBreedsAPI\Controllers\UserController;
+
 
 
 return function(Container $container){
@@ -33,6 +35,11 @@ return function(Container $container){
     $container->set('Color', function() {
         return new ColorController();
     });
+    // Set a dependency called "User"
+    $container->set('User', function() {
+        return new UserController();
+    });
+
 
 
 };

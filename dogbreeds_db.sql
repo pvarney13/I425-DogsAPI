@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2022 at 04:28 AM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Jun 06, 2022 at 02:17 AM
+-- Server version: 10.4.24-MariaDB-log
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,9 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `dogbreeds_db`
 --
-DROP DATABASE IF EXISTS `dogbreeds_db`;
-CREATE DATABASE IF NOT EXISTS `dogbreeds_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `dogbreeds_db`;
 
 -- --------------------------------------------------------
 
@@ -219,6 +216,28 @@ INSERT INTO `origins` (`originID`, `originName`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` tinyint(4) NOT NULL,
+  `role` varchar(25) NOT NULL,
+  `description` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `role`, `description`) VALUES
+(1, 'System administrator', 'A system administrator has permissions to manage users and contents of the website.'),
+(2, 'User manager', ' A user manager has permission to manage user accounts.'),
+(3, 'Advanced user', 'In addition to the permission granted to the basic user role, an advanced user also has access to the search feature.'),
+(4, 'Basic user', 'A basic user has access to the shopping cart feature.');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sizes`
 --
 
@@ -259,6 +278,30 @@ INSERT INTO `temperaments` (`temperamentID`, `temperamentName`, `temperamentDesc
 (1, 'assertive', 'Assertive dogs can be rough on toys, other animals, and property. They zealously look for action. Assertive dogs will destroy anything in their path to get what they want. They will annihilate toys, even those guaranteed for their forceful makeup!\r\n\r\nAssertive dogs are possessive and territorial. They follow their own rules. Assertive dogs have no boundaries. For them, play fighting often turns into real fighting.'),
 (2, 'neutral', 'Neutral dogs are content to find non-destructive ways to amuse themselves if no one to play with. If challenged, they avoid confrontation by either simply walking away or appearing passive. Neutrals would rather chase a Frisbee or retrieve a ball than wrestle.\r\n\r\nThey unselfishly share their food and possessions. Their toys show normal wear and tear but aren’t shred to bits in minutes! They respect and appreciate playing with you or another dog but don’t demand it.\r\n\r\n'),
 (3, 'passive', 'Passives would rather sit next to you or be alone rather than mingle and interact with others. They can appear fearful and anxious. Sadly, they frequently are not happy puppies or dogs.\r\n\r\nPassives are easy on toys. They have no impulse to destroy them.\r\n\r\nPassives knowingly avoid any confrontation. They are cautious and apprehensive. Some never know the joy and fun of being a dog. ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` smallint(6) DEFAULT 4,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'Lily A Weber', 'lilywebe@iu.edu', 'lilywebe', '$2y$10$gsn698KmkPdJNYBABJohDuP3JDJtESZl3i8ozVUur5FtK1wAitSHa', 1, '2022-06-06 00:12:51', '2022-06-06 00:15:37');
 
 --
 -- Indexes for dumped tables
@@ -301,6 +344,12 @@ ALTER TABLE `origins`
   ADD PRIMARY KEY (`originID`);
 
 --
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sizes`
 --
 ALTER TABLE `sizes`
@@ -311,6 +360,13 @@ ALTER TABLE `sizes`
 --
 ALTER TABLE `temperaments`
   ADD PRIMARY KEY (`temperamentID`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_username_uindex` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -332,13 +388,13 @@ ALTER TABLE `breed_color`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `categoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `categoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `colors`
 --
 ALTER TABLE `colors`
-  MODIFY `colorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `colorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `origins`
@@ -357,6 +413,12 @@ ALTER TABLE `sizes`
 --
 ALTER TABLE `temperaments`
   MODIFY `temperamentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

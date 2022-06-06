@@ -22,6 +22,16 @@ return function (App $app) {
         $response->getBody()->write("Hello " . $args['name']);
         return $response;
     });
+
+    // User route group
+    $app->group('/api/v1/users', function (RouteCollectorProxy $group) {
+        $group->get('', 'User:index');
+        $group->get('/{id}', 'User:view');
+        $group->post('', 'User:create');
+        $group->put('/{id}', 'User:update');
+        $group->delete('/{id}', 'User:delete');
+    });
+    
 //Route group for api/v1 pattern
     $app->group('/api/v1', function(RouteCollectorProxy $group){
 
