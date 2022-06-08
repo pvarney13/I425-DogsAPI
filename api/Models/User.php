@@ -7,18 +7,26 @@
  */
 namespace DogBreedsAPI\Models;
 use Illuminate\Database\Eloquent\Model;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 class User extends Model {
+
+    //JWT secret
+    const JWT_KEY = 'DogBreedsAPI-api-v2$';
+
+    //The lifetime of the JWT token: seconds
+    const JWT_EXPIRE = 3600;
 
     //The table associated with this model. "users" is the default name.
     protected $table = 'users';
-//The primary key of the table. "id" is the default name.
+    //The primary key of the table. "id" is the default name.
     protected $primaryKey = 'id';
-//Is the PK an incrementing integer value? "True" is the default value.
+    //Is the PK an incrementing integer value? "True" is the default value.
     public $incrementing = true;
-//The data type of the PK. "int" is the default value.
+    //The data type of the PK. "int" is the default value.
     protected $keyType = 'int';
-//Do the created_at and updated_at columns exist in the table? "True" is the default
- public $timestamps = true;
+    //Do the created_at and updated_at columns exist in the table? "True" is the default
+    public $timestamps = true;
 
     //List all users
     public static function getUsers() {
@@ -97,4 +105,51 @@ class User extends Model {
         //Verify password.
         return password_verify($password, $user->password) ? $user : false;
     }
+
+    /****************** JWT Authentication ************************************/
+    /*
+     * Generate a JWT token.
+     * The signature secret rule: the secret must be at least 12 characters in length;
+     * contain numbers; upper and lowercase letters; and one of the following special characters *&!@%^#$.
+     * For more details, please visit https://github.com/RobDWaller/ReallySimpleJWT
+     */
+    public static function generateJWT($id) {
+        //Data for payload
+        $user = self::find($id);
+
+        if(!$user) {
+            return false;
+        }
+
+        $key = self::JWT_KEY;
+        $expiration = time() + self::JWT_EXPIRE;
+        $issuer = 'dogbreeds-api.com';
+
+        $payload = [
+            'iss' => $issuer,
+            'exp' => $expiration,
+            'isa' => time(),
+            'data' => [
+                'uid' => $id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role
+            ]
+        ];
+
+        //Generate and return the token
+        return JWT::encode(
+            $payload,  //data to be encoded in the JWT
+            $key,  //the signing key
+            'HS256' //algorithm used to sign the token; defaults to HS256
+        );
+    }
+
+    //Validate a JWT token
+    public static function validateJWT($jwt) {
+        $decoded = JWT::decode($jwt, new Key(self::JWT_KEY, 'HS256'));
+        return $decoded;
+    }
+
+
 }

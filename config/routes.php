@@ -12,7 +12,8 @@ use Slim\Routing\RouteCollectorProxy;
 use DogBreedsAPI\Authentication\{
     MyAuthenticator,
     BasicAuthenticator,
-    BearerAuthenticator
+    BearerAuthenticator,
+    JWTAuthenticator
 };
 
 return function (App $app) {
@@ -37,6 +38,8 @@ return function (App $app) {
         $group->delete('/{id}', 'User:delete');
         //Bearer authentication route
         $group->post('/authBearer', 'User:authBearer');
+        //JWT authentication route
+        $group->post('/authJWT', 'User:authJWT');
     });
 
 

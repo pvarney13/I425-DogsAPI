@@ -43,6 +43,7 @@
       <path value="$PROJECT_DIR$/vendor/respect/validation" />
       <path value="$PROJECT_DIR$/vendor/respect/stringifier" />
       <path value="$PROJECT_DIR$/vendor/thiagoprz/eloquent-composite-key" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />
