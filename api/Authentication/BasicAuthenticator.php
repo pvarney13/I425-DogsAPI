@@ -38,7 +38,7 @@ class BasicAuthenticator {
         if(!User::authenticateUser($user, $password)) {
             $results = array('status' => 'Authentication failed');
             $response = AuthenticationHelper::withJson($results, 403);
-            return $response->withHeader('WWW-Authenticate',  'Basic realm="MDogBreedsAPI API"');
+            return $response->withHeader('WWW-Authenticate',  'Basic realm="DogBreedsAPI API"');
         }
 
         // Authentication succeeded
