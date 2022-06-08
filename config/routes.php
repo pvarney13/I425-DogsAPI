@@ -91,8 +91,9 @@ return function (App $app) {
         });
 //}); //No auth
         // })->add(new MyAuthenticator());  //MyAuthentication
-//    })->add(new BasicAuthenticator()); // BasicAuthentication
-    })->add(new BearerAuthenticator()); //Bearer Authentication
+        //})->add(new BasicAuthenticator()); // BasicAuthentication
+        //})->add(new BearerAuthenticator()); //Bearer Authentication
+    })->add(new JWTAuthenticator());
 
 };
 
