@@ -11,6 +11,8 @@ use Psr\Http\Message\ResponseInterface as Response;
 use DogBreedsAPI\Controllers\ControllerHelper as Helper;
 use DogBreedsAPI\Validation\Validator;
 use DogBreedsAPI\Models\User;
+use DogBreedsAPI\Models\Token;
+
 class UserController {
 
     // List users
@@ -101,6 +103,27 @@ class UserController {
         }
 
         $results['status'] = "User has been deleted.";
+        return Helper::withJson($response, $results, 200);
+    }
+
+    // Validate a user’s username and password.
+    // Return a Bearer token on success or error on failure.
+    public function authBearer(Request $request, Response $response, array $args):Response
+    {
+        //Retrieve username and password from the request body
+        $params = $request->getParsedBody();
+        $username = $params['username'];
+        $password = $params['password'];
+
+        //Verify username and password
+        $user = User::authenticateUser($username, $password);
+        if(!$user) {
+            return Helper::withJson($response, ['Status' => 'Login failed.'], 401);
+        }
+
+        //Username and password are valid
+        $token = Token::generateBearer($user->id);
+        $results = ['Status' => 'Login successful', 'Token' => $token];
         return Helper::withJson($response, $results, 200);
     }
 }

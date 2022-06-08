@@ -5,7 +5,7 @@
  * File: BasicAuthenticator.php
  * Description:Define the BasicAuthenticator class.
  */
-namespace MyCollegeAPI\Authentication;
+namespace DogBreedsAPI\Authentication;
 
 use Slim\Psr7\Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
