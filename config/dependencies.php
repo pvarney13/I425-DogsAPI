@@ -14,6 +14,10 @@ use DogBreedsAPI\Controllers\BreedColorController;
 use DogBreedsAPI\Controllers\CategoriesController;
 use DogBreedsAPI\Controllers\ColorController;
 use DogBreedsAPI\Controllers\UserController;
+use DogBreedsAPI\Controllers\SizesController;
+use DogBreedsAPI\Controllers\OriginsController;
+use DogBreedsAPI\Controllers\TemperamentsController;
+
 
 
 
@@ -31,6 +35,22 @@ return function(Container $container){
         $container->set('Categories', function() {
             return new CategoriesController();
         });
+
+    // Set a dependency called "Categories"
+    $container->set('Sizes', function() {
+        return new SizesController();
+    });
+
+    // Set a dependency called "Categories"
+    $container->set('Origins', function() {
+        return new OriginsController();
+    });
+
+    // Set a dependency called "Categories"
+    $container->set('Temperaments', function() {
+        return new TemperamentsController();
+    });
+
     // Set a dependency called "Color
     $container->set('Color', function() {
         return new ColorController();

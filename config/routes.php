@@ -83,6 +83,30 @@ return function (App $app) {
             $group->delete('/{id}', 'Categories:delete');
         });
 
+        //Route group for /categories pattern
+        $group->group('/sizes', function (RouteCollectorProxy $group) {
+            //Call the index method defined in the CategoriesController class
+            //Categories is the container key defined in dependencies.php.
+            $group->get('', 'Sizes:index');
+            $group->get('/{id}', 'Sizes:view');
+        });
+
+        //Route group for /categories pattern
+        $group->group('/origins', function (RouteCollectorProxy $group) {
+            //Call the index method defined in the CategoriesController class
+            //Categories is the container key defined in dependencies.php.
+            $group->get('', 'Origins:index');
+            $group->get('/{id}', 'Origins:view');
+        });
+
+        //Route group for /categories pattern
+        $group->group('/temperaments', function (RouteCollectorProxy $group) {
+            //Call the index method defined in the CategoriesController class
+            //Categories is the container key defined in dependencies.php.
+            $group->get('', 'Temperaments:index');
+            $group->get('/{id}', 'Temperaments:view');
+        });
+
         //Route group for /breedcolor pattern
         $group->group('/breedcolor', function (RouteCollectorProxy $group) {
             //Call the index method defined in the BreedController class
